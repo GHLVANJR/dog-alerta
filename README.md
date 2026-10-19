@@ -3,12 +3,54 @@
 Monitor simples da rune **DOG•GO•TO•THE•MOON** (ID `840000:3` no Bitcoin).
 **Nao e Dogecoin.** Usa so Python padrao e APIs publicas gratis. Sem chaves pagas.
 
-Quando o volume 24h passa de **US$ 1.500.000**, ou quando alguma carteira da lista
-envia **>= 50.000.000 DOG** para outra carteira da lista, o script:
+O script verifica 5 coisas a cada rodada:
+
+| # | Gatilho | Quando alerta |
+|---|---|---|
+| a | Volume | Volume 24h > **US$ 1.500.000** (no maximo 1 e-mail a cada 24h) |
+| b | Baleias | Carteira da lista envia **>= 50.000.000 DOG** para outra da lista |
+| c | Preco | Variacao 24h de **±10%**, ou **15%** desde o ultimo preco alertado |
+| d | Entrada | Sinal de **ENTRADA** ou **INVALIDACAO** (veja abaixo) |
+| e | On-chain (opcional) | Fatia do top 10 muda **>= 1 ponto percentual** (espo.sh) |
+
+Quando algum dispara, o script:
 
 1. Imprime o alerta bem claro no log do Actions
 2. Faz o job **falhar de proposito** (`exit 1`) — o GitHub manda e-mail para o dono do repo
 3. Se voce configurou, tambem manda no Telegram ou Discord
+
+## Sinal de entrada (substitui a rotina "Sinal de entrada DOG")
+
+- **Suportes:** 0,00092–0,00090 → depois 0,00085–0,00083 → depois 0,00070 (o script usa 0,00069–0,00071)
+- **Resistencias (alvos):** 0,00101 · 0,00106 · 0,00110 · 0,00120
+- **ENTRADA (suporte):** preco dentro de uma zona de suporte **e** BTC 24h >= **-2%** (CoinGecko)
+- **ENTRADA (rompimento):** vela **diaria fechada** da Kraken DOGUSD acima de **0,00101**
+  **e** volume 24h > **US$ 1,5 milhao**
+- **INVALIDACAO:** vela diaria fechada da Kraken DOGUSD abaixo de **0,00088**
+  (usa a ultima vela FECHADA de `OHLC interval=1440`; a vela diaria fecha 00:00 UTC = 21:00 em Brasilia)
+
+Para nao repetir:
+- A mesma zona nao alerta de novo em menos de **24h**, e so volta a valer depois que o preco
+  **sair da zona com folga de 1%** e voltar
+- Rompimento alerta 1x por vela diaria; invalidacao alerta 1x e so de novo depois de um
+  fechamento acima de 0,00088
+- O `state.json` ja vem com o sinal de **13/10** (faixa 0,00090–0,00094) marcado como enviado,
+  entao a zona 0,00090–0,00092 **nao** alerta agora; so depois que o preco sair e voltar
+
+## Movimento de preco
+
+- Alerta se a variacao 24h passar de **±10%** (1x a cada 24h para cada lado)
+- Alerta se o preco andar **15%** (para cima ou para baixo) desde o **ultimo preco alertado**.
+  Comeca em **US$ 0,00090873** (ultimo alerta da rotina antiga, 18/10). A cada alerta a referencia
+  vira o preco novo
+
+## On-chain leve (opcional)
+
+Le `https://espo.sh/rune/840000:3` (pagina HTML publica, sem chave) e pega o numero de
+**holders** e a soma do **top 10** em % do supply. So mostra no log e alerta se a fatia do
+top 10 mudar 1 ponto percentual ou mais. **E leitura de pagina HTML**: se o site mudar o layout,
+o script so imprime um aviso e segue (nao quebra). Para desligar, adicione no workflow
+`ONCHAIN: "0"` nas variaveis de ambiente.
 
 ## 1. Criar conta e repositorio no GitHub
 
@@ -42,7 +84,7 @@ e cole o conteudo. Clique em **Commit changes**.
 ## 4. Rodar na mao (teste)
 
 1. Aba **Actions** → workflow **dog-alerta** → **Run workflow** → **Run workflow**
-2. Abra o job e veja o log: volume CoinGecko e as 10 carteiras
+2. Abra o job e veja o log: volume, as 10 carteiras, preco, sinal de entrada e on-chain
 
 A cada ~30 min o cron tambem dispara sozinho. **O cron do GitHub atrasa** com
 frequencia (minutos a horas) — e normal.
@@ -75,7 +117,7 @@ Para Discord: crie um webhook no canal e salve como `DISCORD_WEBHOOK_URL`.
 
 - Cron recomendado: **a cada 30 minutos** (ja vem assim)
 - Entre cada chamada HTTP o script espera ~1,5 s
-- Sao ~10 carteiras + 1 volume ≈ 11–20 requests por rodada
+- Sao ~10 carteiras + CoinGecko + Kraken + espo.sh ≈ 13–25 requests por rodada
 - Free tiers: CoinGecko ~10–30/min, mempool.space e ordinals.com sao publicos
   (podem falhar de vez em quando; o script tenta de novo)
 
@@ -86,8 +128,10 @@ Se o job cair por rate limit, rode de novo depois ou aumente o intervalo no YAML
 
 | Uso | URL |
 |---|---|
-| Volume 24h (principal) | `https://api.coingecko.com/api/v3/simple/price?ids=dog-go-to-the-moon-rune&vs_currencies=usd&include_24hr_vol=true` |
-| Volume (fallback) | `https://api.kraken.com/0/public/Ticker?pair=DOGUSD` |
+| Preco, volume, 24h do DOG e do BTC | `https://api.coingecko.com/api/v3/simple/price?ids=dog-go-to-the-moon-rune,bitcoin&vs_currencies=usd&include_24hr_vol=true&include_24hr_change=true` |
+| Preco/volume (fallback) | `https://api.kraken.com/0/public/Ticker?pair=DOGUSD` |
+| Velas diarias (entrada/invalidacao) | `https://api.kraken.com/0/public/OHLC?pair=DOGUSD&interval=1440` |
+| Holders e top 10 (opcional) | `https://espo.sh/rune/840000:3` |
 | Txs recentes | `https://mempool.space/api/address/{endereco}/txs` |
 | Confirma DOG no UTXO | `https://ordinals.com/r/utxo/{txid}:{vout}` (header `Accept: application/json`) |
 
@@ -100,6 +144,10 @@ Se o job cair por rate limit, rode de novo depois ou aumente o intervalo no YAML
   (pode falhar / atrasar)
 - Kraken cobre so a corretora — use CoinGecko como fonte principal
 - Cron do GitHub **atrasa**; nao e um monitor em tempo real de milissegundos
+- O sinal de entrada e uma regra fixa, **nao e recomendacao de investimento**
+- Se o CoinGecko falhar, o BTC 24h fica sem dado e a entrada por suporte **nao** dispara
+  (o rompimento e a invalidacao continuam, pois vem da Kraken)
+- espo.sh e leitura de HTML: pode quebrar se o site mudar (o script so pula)
 
 ## 10. Atualizar as carteiras
 
@@ -120,6 +168,11 @@ O endereco `bc1p50n9sksy5gwe6fgrxxsqfcp6nds...hpp9k` ja esta incluido.
 
 Extra: se quiser alertar tambem saidas grandes (>= 50M DOG) para **qualquer** destino
 (nao so as da lista), no workflow adicione a variavel de ambiente `CHECK_ALL_OUTPUTS: "1"`.
+
+## Mudar os limites
+
+Todos os numeros ficam no topo do `dog_alerta.py` (ex.: `MOV_24H_PCT`, `SUPORTES`,
+`RESISTENCIAS`, `ROMPIMENTO`, `INVALIDACAO`, `BTC_MIN_24H`). Edite e faca commit.
 
 ## Rodar no computador (opcional)
 

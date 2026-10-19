@@ -1,1 +1,17 @@
-{}
+{
+ "entrada": {
+  "invalidado": false,
+  "nota": "semente: sinal 13/10 16:33 BRT faixa 0.00090-0.00094 ja enviado; suporte_1 so rearma quando o preco sair da zona",
+  "zonas": {
+   "suporte_1": {
+    "armada": false,
+    "ultimo_alerta": 1791919980
+   }
+  }
+ },
+ "preco": {
+  "nota": "semente: monitors/dog_state.json",
+  "ultimo_alerta_em": 1792342320,
+  "ultimo_preco_alertado": 0.00090873
+ }
+}

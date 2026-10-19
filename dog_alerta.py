@@ -1,7 +1,9 @@
 #!/usr/bin/env python3
-"""DOG Alerta - monitor gratuito da rune DOG•GO•TO•THE•MOON (ID 840000:3).
-Usa somente a biblioteca padrao do Python. Sem chaves pagas. Sai com codigo 1 quando ha alerta."""
-import json, os, sys, time, urllib.request
+"""DOG Alerta - monitor gratuito da rune DOG•GO•TO•THE•MOON (ID 840000:3). NAO e Dogecoin.
+Usa somente a biblioteca padrao do Python. Sem chaves. Sai com codigo 1 quando ha alerta.
+Gatilhos: (a) volume 24h, (b) transferencias entre carteiras grandes, (c) movimento de preco,
+(d) sinal de entrada / invalidacao, (e) on-chain leve opcional (espo.sh)."""
+import json, os, re, sys, time, urllib.request
 
 VOL_LIMITE_USD = 1_500_000      # gatilho (a): volume 24h acima disto
 DOG_LIMITE = 50_000_000         # gatilho (b): transferencia >= isto (em DOG)
@@ -10,8 +12,24 @@ RUNE_ID = (840000, 3)
 JANELA_HORAS = 24               # so olha txs das ultimas ~24h (ou novas desde o ultimo state)
 REALERTA_VOL_HORAS = 24         # repete alerta de volume no maximo 1x a cada 24h
 PAUSA = 1.5                     # segundos entre chamadas (gentil com os limites)
-CG = "https://api.coingecko.com/api/v3/simple/price?ids=dog-go-to-the-moon-rune&vs_currencies=usd&include_24hr_vol=true"
+# (c) movimento de preco
+MOV_24H_PCT = 10.0              # alerta se |variacao 24h| >= 10%
+MOV_DESDE_ALERTA_PCT = 15.0     # alerta se o preco andou >= 15% desde o ultimo preco alertado
+# (d) sinal de entrada (substitui a rotina "Sinal de entrada DOG")
+SUPORTES = [("suporte_1", 0.00090, 0.00092), ("suporte_2", 0.00083, 0.00085), ("suporte_3", 0.00069, 0.00071)]
+RESISTENCIAS = [0.00101, 0.00106, 0.00110, 0.00120]
+ROMPIMENTO = 0.00101            # fechamento diario Kraken acima disto + volume > VOL_LIMITE_USD
+INVALIDACAO = 0.00088           # fechamento diario Kraken abaixo disto
+BTC_MIN_24H = -2.0              # entrada em suporte so se BTC 24h >= -2%
+REARMA_MARGEM = 0.01            # zona so rearma depois que o preco sai 1% para fora dela
+REALERTA_ZONA_HORAS = 24
+# (e) on-chain leve (opcional; desligue com ONCHAIN=0)
+TOP10_MUDANCA_PP = 1.0          # alerta se a fatia do top 10 mudar >= 1 ponto percentual
+CG = ("https://api.coingecko.com/api/v3/simple/price?ids=dog-go-to-the-moon-rune,bitcoin"
+      "&vs_currencies=usd&include_24hr_vol=true&include_24hr_change=true")
 KRAKEN = "https://api.kraken.com/0/public/Ticker?pair=DOGUSD"
+KRAKEN_OHLC = "https://api.kraken.com/0/public/OHLC?pair=DOGUSD&interval={}"
+ESPO = "https://espo.sh/rune/840000:3"
 MEMPOOL = "https://mempool.space/api/address/{}/txs"
 ORD = "https://ordinals.com/r/utxo/{}:{}"
 AQUI = os.path.dirname(os.path.abspath(__file__))
@@ -50,20 +68,167 @@ def notificar(texto):
         post_json(hook, {"content": texto[:1900]})
 
 
-# ---------------- gatilho (a): volume ----------------
-def volume_24h():
+# ---------------- dados de mercado ----------------
+def kraken_ohlc(intervalo):
+    d = get(KRAKEN_OHLC.format(intervalo))
+    try:
+        return [c for k, c in d["result"].items() if k != "last"][0]
+    except Exception:
+        return None
+
+
+def mercado():
+    """Preco, volume e variacao 24h do DOG (CoinGecko; fallback Kraken) + BTC 24h (CoinGecko)."""
+    m = {"preco": None, "vol": None, "chg24": None, "btc24": None, "fonte": None}
     d = get(CG)
     try:
-        v = d["dog-go-to-the-moon-rune"]
-        return float(v["usd_24h_vol"]), float(v["usd"]), "CoinGecko"
+        v, b = d["dog-go-to-the-moon-rune"], d.get("bitcoin", {})
+        m.update(preco=float(v["usd"]), vol=float(v["usd_24h_vol"]), chg24=float(v["usd_24h_change"]),
+                 fonte="CoinGecko")
+        m["btc24"] = float(b["usd_24h_change"]) if "usd_24h_change" in b else None
+        return m
     except Exception:
         print("  CoinGecko indisponivel; usando Kraken (so uma corretora, volume menor)")
     d = get(KRAKEN)
     try:
         t = list(d["result"].values())[0]
-        return float(t["v"][1]) * float(t["p"][1]), float(t["c"][0]), "Kraken DOGUSD"
+        m.update(preco=float(t["c"][0]), vol=float(t["v"][1]) * float(t["p"][1]), fonte="Kraken DOGUSD")
+        h = kraken_ohlc(60)  # variacao 24h = ultimo vs fechamento de 24 velas de 1h atras
+        if h and len(h) > 25:
+            m["chg24"] = (m["preco"] / float(h[-25][4]) - 1) * 100
     except Exception:
-        return None, None, None
+        pass
+    return m
+
+
+def checar_volume(m, state, alertas):
+    vol, preco, fonte = m["vol"], m["preco"], m["fonte"]
+    if vol is None:
+        print("  ERRO: nao foi possivel obter o volume (CoinGecko e Kraken falharam)")
+        return
+    print(f"  Volume 24h: US$ {vol:,.0f} | preco US$ {preco:.6f} | fonte {fonte} | limite US$ {VOL_LIMITE_USD:,}")
+    sv = state.setdefault("vol", {"above": False, "last_alert": 0})
+    if vol > VOL_LIMITE_USD:
+        if not sv["above"] or time.time() - sv["last_alert"] > REALERTA_VOL_HORAS * 3600:
+            alertas.append(f"VOLUME 24h do DOG = US$ {vol:,.0f} (> US$ {VOL_LIMITE_USD:,}) fonte {fonte}")
+            sv["last_alert"] = int(time.time())
+        else:
+            print("  (acima do limite, mas ja alertado nas ultimas 24h)")
+    sv["above"] = vol > VOL_LIMITE_USD
+
+
+# ---------------- gatilho (c): movimento de preco ----------------
+def checar_preco(m, state, alertas):
+    p, chg = m["preco"], m["chg24"]
+    if p is None:
+        print("  sem preco, pulando")
+        return
+    sp = state.setdefault("preco", {})
+    ref = sp.get("ultimo_preco_alertado") or p
+    desde = (p / ref - 1) * 100
+    print(f"  Preco US$ {p:.8f} | 24h {chg if chg is None else round(chg, 2)}% | "
+          f"desde ultimo alerta (US$ {ref:.8f}) {desde:+.2f}%")
+    agora, msgs = int(time.time()), []
+    if chg is not None and abs(chg) >= MOV_24H_PCT:
+        lado = "sobe" if chg > 0 else "cai"
+        if agora - sp.get(f"alerta_24h_{lado}", 0) > 24 * 3600:
+            msgs.append(f"DOG {lado} {chg:+.1f}% em 24h (limite ±{MOV_24H_PCT:.0f}%)")
+            sp[f"alerta_24h_{lado}"] = agora
+        else:
+            print("  (movimento 24h ja alertado nas ultimas 24h)")
+    if abs(desde) >= MOV_DESDE_ALERTA_PCT:
+        msgs.append(f"DOG andou {desde:+.1f}% desde o ultimo preco alertado US$ {ref:.8f} "
+                    f"(limite {MOV_DESDE_ALERTA_PCT:.0f}%)")
+    for t in msgs:
+        alertas.append(f"PRECO: {t}. Agora US$ {p:.8f} ({m['fonte']})")
+    if msgs or not sp.get("ultimo_preco_alertado"):
+        sp["ultimo_preco_alertado"], sp["ultimo_alerta_em"] = p, agora
+
+
+# ---------------- gatilho (d): sinal de entrada / invalidacao ----------------
+def alvos(p):
+    return ", ".join(f"{r:.5f}" for r in RESISTENCIAS if r > p) or "acima de todas as resistencias"
+
+
+def checar_entrada(m, state, alertas):
+    p, btc = m["preco"], m["btc24"]
+    se = state.setdefault("entrada", {})
+    zonas = se.setdefault("zonas", {})
+    agora = int(time.time())
+    if p is not None:
+        print(f"  Preco US$ {p:.8f} | BTC 24h {btc if btc is None else round(btc, 2)}% (minimo {BTC_MIN_24H}%)")
+        for nome, lo, hi in SUPORTES:
+            z = zonas.setdefault(nome, {"armada": True, "ultimo_alerta": 0})
+            dentro = lo <= p <= hi
+            if not dentro and (p < lo * (1 - REARMA_MARGEM) or p > hi * (1 + REARMA_MARGEM)):
+                z["armada"] = True  # saiu da zona com folga -> pode alertar de novo na volta
+            if not dentro:
+                continue
+            faixa = f"{lo:.5f}-{hi:.5f}"
+            if not z["armada"] or agora - z["ultimo_alerta"] < REALERTA_ZONA_HORAS * 3600:
+                print(f"  dentro da zona {faixa}, mas ja sinalizada (espera sair da zona e 24h)")
+            elif btc is None:
+                print(f"  dentro da zona {faixa}, mas sem BTC 24h (CoinGecko) -> sem sinal")
+            elif btc < BTC_MIN_24H:
+                print(f"  dentro da zona {faixa}, mas BTC 24h {btc:.2f}% < {BTC_MIN_24H}% -> sem sinal")
+            else:
+                alertas.append(f"ENTRADA DOG: preco US$ {p:.8f} na zona de suporte {faixa} e BTC 24h "
+                               f"{btc:+.2f}%. Alvos: {alvos(p)}. Invalida com fechamento diario < {INVALIDACAO:.5f}")
+                z.update(armada=False, ultimo_alerta=agora)
+    else:
+        print("  sem preco atual, so checando fechamento diario")
+
+    velas = kraken_ohlc(1440)
+    if not velas or len(velas) < 2:
+        print("  ERRO: Kraken OHLC diario indisponivel")
+        return
+    v = velas[-2]  # ultima vela FECHADA (a ultima da lista ainda esta aberta)
+    t, fech = int(v[0]), float(v[4])
+    dia = time.strftime("%Y-%m-%d", time.gmtime(t))
+    print(f"  Kraken DOGUSD fechamento diario {dia} (UTC): US$ {fech:.6f}")
+    vol = m["vol"]
+    if fech > ROMPIMENTO and se.get("rompimento_vela") != t:
+        if vol is not None and vol > VOL_LIMITE_USD:
+            alertas.append(f"ENTRADA DOG (rompimento): fechamento diario Kraken {dia} US$ {fech:.6f} > "
+                           f"{ROMPIMENTO:.5f} com volume 24h US$ {vol:,.0f}. Proximos alvos: {alvos(fech)}")
+            se["rompimento_vela"] = t
+        else:
+            print(f"  fechou acima de {ROMPIMENTO:.5f}, mas volume 24h abaixo de US$ {VOL_LIMITE_USD:,}")
+    abaixo = fech < INVALIDACAO
+    if abaixo and not se.get("invalidado"):
+        alertas.append(f"INVALIDACAO DOG: fechamento diario Kraken {dia} US$ {fech:.6f} < {INVALIDACAO:.5f}")
+        se["invalidacao_vela"] = t
+    se["invalidado"] = abaixo  # so alerta de novo depois de um fechamento >= INVALIDACAO
+
+
+# ---------------- gatilho (e): on-chain leve (espo.sh, opcional) ----------------
+def checar_onchain(state, alertas):
+    if os.environ.get("ONCHAIN", "1") == "0":
+        print("  desligado (ONCHAIN=0)")
+        return
+    try:
+        req = urllib.request.Request(ESPO, headers={"User-Agent": "dog-alerta/1.0"})
+        html = urllib.request.urlopen(req, timeout=30).read().decode("utf-8", "ignore")
+        holders = int(re.search(r'Holders</span>\s*<div class="alkane-stat-line">\s*'
+                                r'<span class="alkane-stat-value">([\d,]+)<', html).group(1).replace(",", ""))
+        pcts = [float(x) for x in re.findall(r'alk-holding-pct mono">([\d.]+)%<', html)][:10]
+        if len(pcts) < 10:
+            raise ValueError("tabela de holders incompleta")
+    except Exception as e:
+        print(f"  espo.sh indisponivel ou layout mudou ({str(e)[:80]}); pulando (nao e erro)")
+        return
+    top10 = round(sum(pcts), 2)
+    so = state.setdefault("onchain", {})
+    ref = so.get("top10_ref")
+    print(f"  Holders: {holders:,} | top 10: {top10:.2f}% do supply"
+          + (f" | referencia {ref:.2f}%" if ref else ""))
+    if ref is not None and abs(top10 - ref) >= TOP10_MUDANCA_PP:
+        alertas.append(f"ON-CHAIN: fatia do top 10 foi de {ref:.2f}% para {top10:.2f}% "
+                       f"(holders {holders:,}) fonte espo.sh")
+        ref = None
+    if ref is None:
+        so["top10_ref"] = top10
+    so["holders"], so["top10_pct"] = holders, top10
 
 
 # ---------------- gatilho (b): runestone ----------------
@@ -203,23 +368,21 @@ def main():
     alertas = []
 
     print("== (a) Volume 24h ==")
-    vol, preco, fonte = volume_24h()
-    if vol is None:
-        print("  ERRO: nao foi possivel obter o volume (CoinGecko e Kraken falharam)")
-    else:
-        print(f"  Volume 24h: US$ {vol:,.0f} | preco US$ {preco:.6f} | fonte {fonte} | limite US$ {VOL_LIMITE_USD:,}")
-        sv = state.setdefault("vol", {"above": False, "last_alert": 0})
-        if vol > VOL_LIMITE_USD:
-            if not sv["above"] or time.time() - sv["last_alert"] > REALERTA_VOL_HORAS * 3600:
-                alertas.append(f"VOLUME 24h do DOG = US$ {vol:,.0f} (> US$ {VOL_LIMITE_USD:,}) fonte {fonte}")
-                sv["last_alert"] = int(time.time())
-            else:
-                print("  (acima do limite, mas ja alertado nas ultimas 24h)")
-        sv["above"] = vol > VOL_LIMITE_USD
+    m = mercado()
+    checar_volume(m, state, alertas)
 
     print("== (b) Transferencias entre carteiras grandes ==")
     wallets = json.load(open(os.path.join(AQUI, "wallets.json")))["wallets"]
     checar_wallets(wallets, state, alertas)
+
+    print("== (c) Movimento de preco ==")
+    checar_preco(m, state, alertas)
+
+    print("== (d) Sinal de entrada / invalidacao ==")
+    checar_entrada(m, state, alertas)
+
+    print("== (e) On-chain leve (espo.sh, opcional) ==")
+    checar_onchain(state, alertas)
 
     if json.dumps(state, sort_keys=True) != antes:
         with open(STATE, "w") as f:
