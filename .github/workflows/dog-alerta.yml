@@ -10,6 +10,10 @@ on:
 permissions:
   contents: write
 
+concurrency:
+  group: dog-alerta
+  cancel-in-progress: false
+
 jobs:
   check:
     runs-on: ubuntu-latest
@@ -17,7 +21,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Monitor DOG (volume + transferencias)
+      - name: Monitor DOG (volume, transferencias, preco, entrada, on-chain)
         id: run
         env:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
@@ -36,6 +40,7 @@ jobs:
           git add state.json
           git diff --cached --quiet && echo "state sem mudanca" && exit 0
           git commit -m "chore: atualiza state.json [skip ci]"
+          git pull --rebase --quiet || true
           git push
 
       - name: Falhar o job se houve alerta (e-mail do GitHub)
