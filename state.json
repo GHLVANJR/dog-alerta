@@ -5,8 +5,8 @@
   "nota": "semente: sinal 13/10 16:33 BRT faixa 0.00090-0.00094 ja enviado; suporte_1 so rearma quando o preco sair da zona",
   "zonas": {
    "suporte_1": {
-    "armada": true,
-    "ultimo_alerta": 1791919980
+    "armada": false,
+    "ultimo_alerta": 1792476694
    },
    "suporte_2": {
     "armada": true,
@@ -20,7 +20,7 @@
  },
  "onchain": {
   "holders": 86218,
-  "top10_pct": 29.48,
+  "top10_pct": 29.5,
   "top10_ref": 29.48
  },
  "preco": {
@@ -36,7 +36,8 @@
    "7377bf4083fc8a74a1b5a7901ad798b1239ebfc52b05fb85531b0306263037f6",
    "342164107ed3e2734f014412052bf0aa72f66c8b98aa27d71ddf4da37fcef790",
    "338464815e54728987f04b83bf83d5c225d12e9f7fcade5eaa15ba39991d4bf4",
-   "ee3a4c89af21f71902381366df8a26b4e179e6b0933c69aca13de94be350f59d"
+   "ee3a4c89af21f71902381366df8a26b4e179e6b0933c69aca13de94be350f59d",
+   "11c433520dd7290ccca14e74b82c9de899a89fa3c96904a8319ae99c65a92aca"
   ],
   "bc1p4pkr90vrqspmfddplde05v55gelkvcjwhsu93c9m5zu9gwwvgz0qap0vkn": [],
   "bc1p50n9sksy5gwe6fgrxxsqfcp6ndsfjhykjqef64m8067hfadd9efqrhpp9k": [
@@ -80,7 +81,9 @@
    "b195cf38f51b0f7e58b770d603439ad5b5f7693d3f31c6360895208ec649353e",
    "95657b57a031c09cd3b1bb35a8b53bb9bdc8424aab749c6cf13d0ed6b299d126",
    "ea14d9024ad17325aa1efb465d4f47a842a394ed419c6a5fe7ecef43947c465e",
-   "739bc633d7708124855ed43e3c6ee1b8b504252cf30a54709f7e835b1fcbe313"
+   "739bc633d7708124855ed43e3c6ee1b8b504252cf30a54709f7e835b1fcbe313",
+   "46d3ba6defe49683cb265783b9f5095fb97a8345e027200c5ed78764a702eebd",
+   "930769d265f89cbc1c9ce2a689ceb4bcaf631b6fd38a5fe209a2297878b73c10"
   ],
   "bc1plzs2lltvv29k603w5m0aqma5e8w0n3pc77dt89l5w9hurmdfgd0swdhspn": [
    "fddfe627c351fb08387eff46e0a6dfe2007a61355c6cf4a98201b06203e19586",
@@ -122,7 +125,11 @@
    "4432bf8d6351a19355cc5dc8d701643223f859e8d72484fbe5ef793801d7b269",
    "c3d58d258fd93ff74c6588c15dd75f91f38acad1f94817786ae573bfddc2c0c8",
    "f99694468b62dd583db840e179c135d4d0828343adc6d3b7123b83a7f61ede80",
-   "e37fce55f64d17b04ec05fef13ded40822779a69e6bc8ffbd7279658aa8eac2c"
+   "e37fce55f64d17b04ec05fef13ded40822779a69e6bc8ffbd7279658aa8eac2c",
+   "130e80792ba99dfb21a2381ac07356f1191bccae08b486418feca0f46540aacc",
+   "e86392100207d16c29c9b9420da1ccce0ca3c3654a4eb78a6312b93951e98218",
+   "8d6c16277f90b130860ac5a042e7b83c20a31dc6ad6dbcfa28957ab3cfbd3f28",
+   "d1c98222db825cd5ed8fc3746c0d796f886245486d9af0311bc1304eac5c129c"
   ],
   "bc1pzg6aed026czampasr6lp7q0eugeptmw789z4d0xm605sc0qm2cmqxf5vtk": [
    "8881915853ffa244a2a2897647330297cae38598940232532026b7bdf49c7faf"
