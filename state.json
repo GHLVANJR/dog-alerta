@@ -2,34 +2,96 @@
  "alerted": [],
  "convictas": {
   "bc1p4pkr90vrqspmfddplde05v55gelkvcjwhsu93c9m5zu9gwwvgz0qap0vkn": {
-   "checado_em": 1792879487,
+   "checado_em": 1792881637,
+   "ntx": 103,
    "ref": 491438189.15,
    "ultimo": 491438189.15
   },
+  "bc1p5qpcdw4xpql54f0hfuxukgqe9g0ln0mppxgw8tqh2jvd8rccs3ase2zdj8": {
+   "checado_em": 1792881637,
+   "ntx": 8,
+   "ref": 310000000.0,
+   "ultimo": 310000000.0
+  },
   "bc1p5s304rghaw9uv66ewva26qvsw8gt4ydwl5yxa7knkkl5k4v492vs8yykdm": {
-   "checado_em": 1792880514,
+   "checado_em": 1792881637,
    "ref": 487039940,
-   "ultimo": 487039940
+   "ultimo": 487039939.5447
+  },
+  "bc1p6ag3mn7x38tgvefqxs89zwun4jccpdf7s690ly0ktn5nzhadggqqm5xva7": {
+   "checado_em": 1792881637,
+   "ntx": 41,
+   "ref": 406049743.99396,
+   "ultimo": 406049743.99396
+  },
+  "bc1p7e8tuawg9j0x7pz7zw77rrls5sulsnmctne5gurfzgv5fhzc48jqxfn232": {
+   "checado_em": 1792881637,
+   "ntx": 237,
+   "ref": 159474671.25329,
+   "ultimo": 159474671.25329
+  },
+  "bc1p9n0tusyf7892lfv68vcu8zhvjtcsd2r87w5my88qe5qyeetfcdlq2q65ng": {
+   "checado_em": 1792881637,
+   "ntx": 14,
+   "ref": 154079884.89728,
+   "ultimo": 154079884.89728
   },
   "bc1phd70g7qgfmsyv0dktq3hmh4nlcl99p25e5lquye7te7r7njuu6ps79zhqh": {
-   "checado_em": 1792879487,
+   "checado_em": 1792881637,
    "ref": 29997273.02372,
    "ultimo": 29997273.02372
   },
   "bc1pj7ku066jey0h6cca2tc3ft62y3k2kh8v4mqnel3hasyehe4jw23sm2h0xm": {
-   "checado_em": 1792879487,
+   "checado_em": 1792881637,
    "ref": 15897272.23131,
    "ultimo": 15897272.23131
   },
   "bc1pneum26aq4jjtw8p72gsf0k34qvjfmlucjpa2kx70s6ppuh0dpkgs78ndd5": {
-   "checado_em": 1792879487,
+   "checado_em": 1792881637,
    "ref": 4696823.81581,
    "ultimo": 4696823.81581
   },
+  "bc1pqc2zn2nakq255dy6swjkts54ktfm35cjv2x7266n53tn8lvntfjsjpsuds": {
+   "checado_em": 1792881637,
+   "ntx": 34,
+   "ref": 319952000.0,
+   "ultimo": 319952000.0
+  },
+  "bc1ptfgl99df6xtkg6e407d4hylslt32hw0vgk3zwa7n9urlktdwaukqpndgwq": {
+   "checado_em": 1792881637,
+   "ntx": 26,
+   "ref": 115040538.84109,
+   "ultimo": 115040538.84109
+  },
+  "bc1ptuuga5dww30s5vw5sugx6x5y5svvsw2wghenw8hgn72tffxs3sqqwnt3zv": {
+   "checado_em": 1792881637,
+   "ntx": 17,
+   "ref": 138371557.62,
+   "ultimo": 138371557.62
+  },
+  "bc1pykww7r44ts0t4c5fwlngcdvf26cq36eg3t2h0yct3cpptmn7tuxqfraj2s": {
+   "checado_em": 1792881637,
+   "ntx": 2,
+   "ref": 111032781.27567,
+   "ultimo": 111032781.27567
+  },
+  "bc1pzfc47vp69p88wj7fx3a0n30hxhhvkfck3zz63eg53n8ur9wxrstssed4f0": {
+   "checado_em": 1792881637,
+   "ntx": 5,
+   "ref": 200692046.89979,
+   "ultimo": 200692046.89979
+  },
   "bc1pzsygr05uzgtnyfg7a3j0ehjpuph5gaadvjx4gsry52knsvhhz7cqu4fal9": {
-   "checado_em": 1792879487,
+   "checado_em": 1792881637,
+   "ntx": 104,
    "ref": 1135469082.3351,
    "ultimo": 1135469082.3351
+  },
+  "bc1q42dv46c779lz3m87hen7u3wtvfmquewgaeus30": {
+   "checado_em": 1792881637,
+   "ntx": 257,
+   "ref": 116727511.14754,
+   "ultimo": 116727511.14754
   }
  },
  "entrada": {
@@ -51,7 +113,7 @@
   }
  },
  "onchain": {
-  "holders": 86279,
+  "holders": 86280,
   "top10_pct": 29.3,
   "top10_ref": 29.48
  },
@@ -291,7 +353,6 @@
    "68c0d824464fba7e1412b9b76c06db6f5f13bfe112c058b540d1ec041b00d92d"
   ],
   "bc1plzs2lltvv29k603w5m0aqma5e8w0n3pc77dt89l5w9hurmdfgd0swdhspn": [
-   "981835f0d8e68764749da32815a556f6e4ecd3fe67acd3ef696f2ef955d19c80",
    "a4c23f1bd65909fe268edf29f7b8c42b4909093f2932ca6ca493231f24f9bf95",
    "d6673ba2eaaabc9f14e9b00ee42922828374389210fec40c4812a40123d5611d",
    "1d7cc4a84167fe2da037d77993fe4b9f7b434d0ff94b6b6f258e17be6cc47540",
@@ -390,7 +451,8 @@
    "41aacab4c2fcefd8cb91a607613f9739574142a4fe4cfec5c01589059eb679e1",
    "3e55c732e94e4ac9e851743add75f4067468cef7d317e9b24bb2609f33f6204a",
    "dbdcae0353ad8d6b2ab3555227cd58e540a09cd11560965fadf54f84f5c4866c",
-   "55d62b9f96c05dd565d67d4378b1fa9e6bbbfe07b8ac7f311f7eea6f8ed1dc7b"
+   "55d62b9f96c05dd565d67d4378b1fa9e6bbbfe07b8ac7f311f7eea6f8ed1dc7b",
+   "43c0500fb86d56f3855119bac8922fcd482cdc853f0b122db9a22c8c1f53cb13"
   ],
   "bc1pzg6aed026czampasr6lp7q0eugeptmw789z4d0xm605sc0qm2cmqxf5vtk": [
    "8881915853ffa244a2a2897647330297cae38598940232532026b7bdf49c7faf",

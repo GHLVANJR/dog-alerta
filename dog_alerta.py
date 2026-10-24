@@ -417,7 +417,8 @@ def checar_convictas(cfg, state, alertas):
             print(f"  {nome}: sem resposta, pulando")
             continue
         st = sw.setdefault(a, {})
-        st.setdefault("ref", w.get("dog_base", saldo))
+        if st.get("ref") is None:
+            st["ref"] = w.get("dog_base") if w.get("dog_base") is not None else saldo
         ref = st["ref"]
         dif = saldo - ref
         pct = dif / ref * 100 if ref else (100.0 if dif else 0.0)
