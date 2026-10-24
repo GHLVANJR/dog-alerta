@@ -404,10 +404,20 @@ def checar_convictas(cfg, state, alertas):
         dorm = nome.startswith("dormente")
         saldo = saldo_dog(a)
         time.sleep(PAUSA)
+        if dorm:
+            info = get(f"https://mempool.space/api/address/{a}", tentativas=2) or {}
+            ntx = (info.get("chain_stats", {}).get("tx_count", 0) + info.get("mempool_stats", {}).get("tx_count", 0)) if info else None
+            stx = sw.setdefault(a, {})
+            if ntx is not None:
+                if stx.get("ntx") is not None and ntx > stx["ntx"]:
+                    alertas.append(f"DESPERTOU: {nome} fez {ntx - stx['ntx']} transacao(oes) nova(s) "
+                                   f"depois de muito tempo parada https://mempool.space/address/{a}")
+                stx["ntx"] = ntx
         if saldo is None:
             print(f"  {nome}: sem resposta, pulando")
             continue
-        st = sw.setdefault(a, {"ref": w.get("dog_base", saldo)})
+        st = sw.setdefault(a, {})
+        st.setdefault("ref", w.get("dog_base", saldo))
         ref = st["ref"]
         dif = saldo - ref
         pct = dif / ref * 100 if ref else (100.0 if dif else 0.0)

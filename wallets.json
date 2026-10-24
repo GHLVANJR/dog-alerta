@@ -83,6 +83,46 @@
   {
    "address": "bc1p4pkr90vrqspmfddplde05v55gelkvcjwhsu93c9m5zu9gwwvgz0qap0vkn",
    "label": "dormente #10"
+  },
+  {
+   "address": "bc1p6ag3mn7x38tgvefqxs89zwun4jccpdf7s690ly0ktn5nzhadggqqm5xva7",
+   "label": "dormente #12 (parada desde 15/04/2026)"
+  },
+  {
+   "address": "bc1pqc2zn2nakq255dy6swjkts54ktfm35cjv2x7266n53tn8lvntfjsjpsuds",
+   "label": "dormente #16 (parada desde 15/04/2026)"
+  },
+  {
+   "address": "bc1p5qpcdw4xpql54f0hfuxukgqe9g0ln0mppxgw8tqh2jvd8rccs3ase2zdj8",
+   "label": "dormente #17 (parada desde 15/04/2026)"
+  },
+  {
+   "address": "bc1pzfc47vp69p88wj7fx3a0n30hxhhvkfck3zz63eg53n8ur9wxrstssed4f0",
+   "label": "dormente #26 (parada desde 15/04/2026)"
+  },
+  {
+   "address": "bc1p7e8tuawg9j0x7pz7zw77rrls5sulsnmctne5gurfzgv5fhzc48jqxfn232",
+   "label": "dormente #32 (parada desde 15/04/2026)"
+  },
+  {
+   "address": "bc1p9n0tusyf7892lfv68vcu8zhvjtcsd2r87w5my88qe5qyeetfcdlq2q65ng",
+   "label": "dormente #34 (parada desde 15/04/2026)"
+  },
+  {
+   "address": "bc1ptuuga5dww30s5vw5sugx6x5y5svvsw2wghenw8hgn72tffxs3sqqwnt3zv",
+   "label": "dormente #36 (parada desde 15/04/2026)"
+  },
+  {
+   "address": "bc1q42dv46c779lz3m87hen7u3wtvfmquewgaeus30",
+   "label": "dormente #41 (parada desde 15/04/2026)"
+  },
+  {
+   "address": "bc1ptfgl99df6xtkg6e407d4hylslt32hw0vgk3zwa7n9urlktdwaukqpndgwq",
+   "label": "dormente #44 (parada desde 15/04/2026)"
+  },
+  {
+   "address": "bc1pykww7r44ts0t4c5fwlngcdvf26cq36eg3t2h0yct3cpptmn7tuxqfraj2s",
+   "label": "dormente #47 (parada desde 15/04/2026)"
   }
  ],
  "corretoras": {
