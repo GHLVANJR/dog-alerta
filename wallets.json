@@ -1,15 +1,92 @@
 {
  "nota": "Top 10 holders de DOG (espo.sh, 2026-10-18). Edite a lista a vontade.",
  "wallets": [
-  {"address": "bc1plzs2lltvv29k603w5m0aqma5e8w0n3pc77dt89l5w9hurmdfgd0swdhspn", "label": "#1", "dog_aprox": 13606316019},
-  {"address": "bc1pzsx4xvghxmc0prv4mys0xdly9dh9js3e88e4m24k5gxzkeskx30s4qzjud", "label": "#2", "dog_aprox": 3311134793},
-  {"address": "bc1pk8g4rztfkxs2q9c40g6keeknjw6aadx3kzu4suzlll0remfw7xxs5x9ctv", "label": "#3", "dog_aprox": 3022502863},
-  {"address": "3G7gSaxPY7BhbEASd2pnZY5cg7uEQMQvd8", "label": "#4", "dog_aprox": 2906396031},
-  {"address": "bc1qj7dam98j6ktjcp320qu77y2vrylv49c2k2hkmu", "label": "#5", "dog_aprox": 1949263228},
-  {"address": "bc1p50n9sksy5gwe6fgrxxsqfcp6ndsfjhykjqef64m8067hfadd9efqrhpp9k", "label": "#6", "dog_aprox": 1710196517},
-  {"address": "bc1pzsygr05uzgtnyfg7a3j0ehjpuph5gaadvjx4gsry52knsvhhz7cqu4fal9", "label": "#7", "dog_aprox": 1135469082},
-  {"address": "bc1pczdzvvuulwyna9e6dsl8w0r35prvnmpawcwlrv4y42u5npysrdzqhwa7wl", "label": "#8", "dog_aprox": 785206742},
-  {"address": "bc1pzg6aed026czampasr6lp7q0eugeptmw789z4d0xm605sc0qm2cmqxf5vtk", "label": "#9", "dog_aprox": 549952538},
-  {"address": "bc1p4pkr90vrqspmfddplde05v55gelkvcjwhsu93c9m5zu9gwwvgz0qap0vkn", "label": "#10", "dog_aprox": 491438189}
- ]
+  {
+   "address": "bc1plzs2lltvv29k603w5m0aqma5e8w0n3pc77dt89l5w9hurmdfgd0swdhspn",
+   "label": "#1",
+   "dog_aprox": 13606316019
+  },
+  {
+   "address": "bc1pzsx4xvghxmc0prv4mys0xdly9dh9js3e88e4m24k5gxzkeskx30s4qzjud",
+   "label": "#2",
+   "dog_aprox": 3311134793
+  },
+  {
+   "address": "bc1pk8g4rztfkxs2q9c40g6keeknjw6aadx3kzu4suzlll0remfw7xxs5x9ctv",
+   "label": "#3",
+   "dog_aprox": 3022502863
+  },
+  {
+   "address": "3G7gSaxPY7BhbEASd2pnZY5cg7uEQMQvd8",
+   "label": "#4",
+   "dog_aprox": 2906396031
+  },
+  {
+   "address": "bc1qj7dam98j6ktjcp320qu77y2vrylv49c2k2hkmu",
+   "label": "#5",
+   "dog_aprox": 1949263228
+  },
+  {
+   "address": "bc1p50n9sksy5gwe6fgrxxsqfcp6ndsfjhykjqef64m8067hfadd9efqrhpp9k",
+   "label": "#6",
+   "dog_aprox": 1710196517
+  },
+  {
+   "address": "bc1pzsygr05uzgtnyfg7a3j0ehjpuph5gaadvjx4gsry52knsvhhz7cqu4fal9",
+   "label": "#7",
+   "dog_aprox": 1135469082
+  },
+  {
+   "address": "bc1pczdzvvuulwyna9e6dsl8w0r35prvnmpawcwlrv4y42u5npysrdzqhwa7wl",
+   "label": "#8",
+   "dog_aprox": 785206742
+  },
+  {
+   "address": "bc1pzg6aed026czampasr6lp7q0eugeptmw789z4d0xm605sc0qm2cmqxf5vtk",
+   "label": "#9",
+   "dog_aprox": 549952538
+  },
+  {
+   "address": "bc1p4pkr90vrqspmfddplde05v55gelkvcjwhsu93c9m5zu9gwwvgz0qap0vkn",
+   "label": "#10",
+   "dog_aprox": 491438189
+  }
+ ],
+ "nota_convictas": "Carteiras convictas e dormentes (baseline ordinals.com 24/10/2026 12:26 BRT). Saldo em DOG.",
+ "convictas": [
+  {
+   "address": "bc1prdyzwdg0rcdgf9cg0a4zyx0cq3mdr3n6mcym95f3eg4dexfvnsjq200ly4",
+   "label": "convicta A (so DOG)",
+   "dog_base": 339497205.90544
+  },
+  {
+   "address": "bc1phd70g7qgfmsyv0dktq3hmh4nlcl99p25e5lquye7te7r7njuu6ps79zhqh",
+   "label": "convicta B (so DOG desde 05/2024)",
+   "dog_base": 29997273.02372
+  },
+  {
+   "address": "bc1pneum26aq4jjtw8p72gsf0k34qvjfmlucjpa2kx70s6ppuh0dpkgs78ndd5",
+   "label": "convicta C (so DOG, nova 27/09/2026)",
+   "dog_base": 4696823.81581
+  },
+  {
+   "address": "bc1pj7ku066jey0h6cca2tc3ft62y3k2kh8v4mqnel3hasyehe4jw23sm2h0xm",
+   "label": "convicta D (colecionador de runes desde 04/2024)",
+   "dog_base": 15897272.23131
+  }
+ ],
+ "dormentes": [
+  {
+   "address": "bc1pzsygr05uzgtnyfg7a3j0ehjpuph5gaadvjx4gsry52knsvhhz7cqu4fal9",
+   "label": "dormente #7"
+  },
+  {
+   "address": "bc1p4pkr90vrqspmfddplde05v55gelkvcjwhsu93c9m5zu9gwwvgz0qap0vkn",
+   "label": "dormente #10"
+  }
+ ],
+ "corretoras": {
+  "bc1p8d8kexdxatnfejdvd9dq7uky4m9wjxl59r3dnqg7nqq9gaxz2jxq6ntach": "deposito de corretora conhecido",
+  "bc1plzs2lltvv29k603w5m0aqma5e8w0n3pc77dt89l5w9hurmdfgd0swdhspn": "top1 #1"
+ }
 }

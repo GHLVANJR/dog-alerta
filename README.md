@@ -184,3 +184,18 @@ Nao precisa instalar nada. Codigo de saida `1` = houve alerta; `0` = tudo calmo.
 
 ---
 Feito para uso pessoal. Nenhuma conta de usuario real foi usada na montagem deste repo.
+
+## (f) Carteiras convictas e dormentes (novo)
+
+Lista separada do top 10, em `wallets.json`:
+
+- **convictas**: 4 carteiras que seguram DOG ha muito tempo (A, B, C, D). Saldo inicial anotado em 24/10/2026 12:26 BRT (ordinals.com).
+- **dormentes**: top #7 e #10, paradas ha muito tempo. Qualquer movimento de DOG gera o alerta **DESPERTOU**.
+- **corretoras**: deposito de corretora conhecido e o top #1. Se uma saida for para eles, o alerta diz *"provavel envio para corretora (pressao de venda)"*.
+
+A cada rodada o script le o saldo de DOG de cada uma (pagina do ordinals.com, 6 pedidos so). Alerta quando o saldo muda **5% ou mais** ou **5 milhoes de DOG ou mais** em relacao ao ultimo valor alertado:
+
+- **COMPRA (aumentou)** ou **VENDA/SAIDA (diminuiu)**, com link do mempool.space.
+- Se **3 ou mais** convictas aumentarem em 24h: **ACUMULACAO EM GRUPO**.
+
+O ultimo valor alertado fica em `state.json` (chave `convictas`). Para adicionar uma carteira, coloque na lista `convictas` do `wallets.json` com `dog_base`.

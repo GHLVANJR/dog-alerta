@@ -2,7 +2,8 @@
 """DOG Alerta - monitor gratuito da rune DOG•GO•TO•THE•MOON (ID 840000:3). NAO e Dogecoin.
 Usa somente a biblioteca padrao do Python. Sem chaves. Sai com codigo 1 quando ha alerta.
 Gatilhos: (a) volume 24h, (b) transferencias entre carteiras grandes, (c) movimento de preco,
-(d) sinal de entrada / invalidacao, (e) on-chain leve opcional (espo.sh)."""
+(d) sinal de entrada / invalidacao, (e) on-chain leve opcional (espo.sh),
+(f) carteiras convictas e dormentes (saldo via ordinals.com)."""
 import json, os, re, sys, time, urllib.request
 
 VOL_LIMITE_USD = 1_500_000      # gatilho (a): volume 24h acima disto
@@ -359,6 +360,85 @@ def checar_wallets(wallets, state, alertas):
     state["alerted"] = sorted(ja_alertado)[-500:]
 
 
+# ---------------- gatilho (f): carteiras convictas e dormentes ----------------
+ORD_ADDR = "https://ordinals.com/address/{}"
+CONV_PCT = 5.0                  # alerta se o saldo mudar >= 5% ...
+CONV_DOG = 5_000_000            # ... ou >= 5 milhoes de DOG (vs ultimo valor alertado)
+GRUPO_MIN = 3                   # >= 3 convictas aumentando em 24h -> ACUMULACAO EM GRUPO
+
+
+def saldo_dog(addr):
+    """Saldo DOG do endereco lendo a pagina HTML do ordinals.com (a API JSON esta desligada)."""
+    try:
+        req = urllib.request.Request(ORD_ADDR.format(addr), headers={"User-Agent": "dog-alerta/1.0"})
+        html = urllib.request.urlopen(req, timeout=30).read().decode("utf-8", "ignore")
+    except Exception as e:
+        print(f"  aviso: ordinals.com falhou ({str(e)[:60]})")
+        return None
+    if "rune balances" not in html and "outputs" not in html:
+        return None  # bloqueio/pagina inesperada
+    mt = re.search(r"DOG\u2022GO\u2022TO\u2022THE\u2022MOON</a>:\s*([\d.]+)", html)
+    return float(mt.group(1)) if mt else 0.0
+
+
+def destino_saida(addr, corretoras):
+    """Olha as txs recentes (1 chamada ao mempool.space) e diz se algum envio foi para corretora/top1."""
+    txs = get(MEMPOOL.format(addr), tentativas=2) or []
+    for tx in txs[:10]:
+        if not any(v.get("prevout", {}).get("scriptpubkey_address") == addr for v in tx.get("vin", [])):
+            continue
+        for o in tx["vout"]:
+            d = o.get("scriptpubkey_address")
+            if d in corretoras:
+                return tx["txid"], corretoras[d]
+        return tx["txid"], None
+    return None, None
+
+
+def checar_convictas(cfg, state, alertas):
+    corretoras = cfg.get("corretoras", {})
+    sw = state.setdefault("convictas", {})
+    agora = int(time.time())
+    for w in cfg.get("convictas", []) + cfg.get("dormentes", []):
+        a, nome = w["address"], w["label"]
+        dorm = nome.startswith("dormente")
+        saldo = saldo_dog(a)
+        time.sleep(PAUSA)
+        if saldo is None:
+            print(f"  {nome}: sem resposta, pulando")
+            continue
+        st = sw.setdefault(a, {"ref": w.get("dog_base", saldo)})
+        ref = st["ref"]
+        dif = saldo - ref
+        pct = dif / ref * 100 if ref else (100.0 if dif else 0.0)
+        print(f"  {nome}: {saldo:,.2f} DOG | referencia {ref:,.2f} | {dif:+,.2f} ({pct:+.2f}%)")
+        st["ultimo"], st["checado_em"] = saldo, agora
+        mexeu = abs(dif) >= 1 if dorm else (abs(pct) >= CONV_PCT or abs(dif) >= CONV_DOG)
+        if not mexeu:
+            continue
+        link = f"https://mempool.space/address/{a}"
+        if dif > 0:
+            tipo = "COMPRA (aumentou)"
+            st["aumento_em"] = agora
+            extra = ""
+        else:
+            tipo = "VENDA/SAIDA (diminuiu)"
+            txid, dest = destino_saida(a, corretoras)
+            if txid:
+                link = f"https://mempool.space/tx/{txid}"
+            extra = f" - provavel envio para corretora (pressao de venda) [{dest}]" if dest else ""
+        cab = "DESPERTOU (dormente mexeu em DOG)" if dorm else "CARTEIRA CONVICTA"
+        alertas.append(f"{cab}: {nome} {tipo} {dif:+,.0f} DOG ({pct:+.1f}%), de {ref:,.0f} para "
+                       f"{saldo:,.0f} DOG{extra} {link}")
+        st["ref"] = saldo
+    conv = {w["address"] for w in cfg.get("convictas", [])}
+    subiram = [a for a in conv if agora - sw.get(a, {}).get("aumento_em", 0) <= 24 * 3600]
+    ult = state.get("grupo_alerta_em", 0)
+    if len(subiram) >= GRUPO_MIN and agora - ult > 24 * 3600:
+        alertas.append(f"ACUMULACAO EM GRUPO: {len(subiram)} carteiras convictas aumentaram DOG nas ultimas 24h")
+        state["grupo_alerta_em"] = agora
+
+
 def main():
     try:
         state = json.load(open(STATE))
@@ -372,8 +452,8 @@ def main():
     checar_volume(m, state, alertas)
 
     print("== (b) Transferencias entre carteiras grandes ==")
-    wallets = json.load(open(os.path.join(AQUI, "wallets.json")))["wallets"]
-    checar_wallets(wallets, state, alertas)
+    cfg = json.load(open(os.path.join(AQUI, "wallets.json")))
+    checar_wallets(cfg["wallets"], state, alertas)
 
     print("== (c) Movimento de preco ==")
     checar_preco(m, state, alertas)
@@ -383,6 +463,9 @@ def main():
 
     print("== (e) On-chain leve (espo.sh, opcional) ==")
     checar_onchain(state, alertas)
+
+    print("== (f) Carteiras convictas e dormentes ==")
+    checar_convictas(cfg, state, alertas)
 
     if json.dumps(state, sort_keys=True) != antes:
         with open(STATE, "w") as f:

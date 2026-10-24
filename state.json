@@ -1,5 +1,25 @@
 {
  "alerted": [],
+ "convictas": {
+  "bc1p4pkr90vrqspmfddplde05v55gelkvcjwhsu93c9m5zu9gwwvgz0qap0vkn": {
+   "ref": 491438189.15
+  },
+  "bc1phd70g7qgfmsyv0dktq3hmh4nlcl99p25e5lquye7te7r7njuu6ps79zhqh": {
+   "ref": 29997273.02372
+  },
+  "bc1pj7ku066jey0h6cca2tc3ft62y3k2kh8v4mqnel3hasyehe4jw23sm2h0xm": {
+   "ref": 15897272.23131
+  },
+  "bc1pneum26aq4jjtw8p72gsf0k34qvjfmlucjpa2kx70s6ppuh0dpkgs78ndd5": {
+   "ref": 4696823.81581
+  },
+  "bc1prdyzwdg0rcdgf9cg0a4zyx0cq3mdr3n6mcym95f3eg4dexfvnsjq200ly4": {
+   "ref": 339497205.90544
+  },
+  "bc1pzsygr05uzgtnyfg7a3j0ehjpuph5gaadvjx4gsry52knsvhhz7cqu4fal9": {
+   "ref": 1135469082.3351
+  }
+ },
  "entrada": {
   "invalidado": false,
   "nota": "semente: sinal 13/10 16:33 BRT faixa 0.00090-0.00094 ja enviado; suporte_1 so rearma quando o preco sair da zona",
