@@ -55,9 +55,9 @@
  "nota_convictas": "Carteiras convictas e dormentes (baseline ordinals.com 24/10/2026 12:26 BRT). Saldo em DOG.",
  "convictas": [
   {
-   "address": "bc1prdyzwdg0rcdgf9cg0a4zyx0cq3mdr3n6mcym95f3eg4dexfvnsjq200ly4",
-   "label": "convicta A (so DOG)",
-   "dog_base": 339497205.90544
+   "address": "bc1p5s304rghaw9uv66ewva26qvsw8gt4ydwl5yxa7knkkl5k4v492vs8yykdm",
+   "label": "#11 comprou no fundo de 20/12/2025 (so segura)",
+   "dog_base": 487039940
   },
   {
    "address": "bc1phd70g7qgfmsyv0dktq3hmh4nlcl99p25e5lquye7te7r7njuu6ps79zhqh",
