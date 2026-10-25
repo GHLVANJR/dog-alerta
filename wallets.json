@@ -83,6 +83,16 @@
    "address": "bc1p0jm3ucw8sh7edx37lw06ce9aaem09tcx2yr2zuenqr33hqce3lps67k0ns",
    "label": "Parceira da #6 (co-sender com custodial #6)",
    "dog_base": null
+  },
+  {
+   "address": "bc1p92r0n775g4vw55e6uynqc2mljy7awrvgnpus7y0us48fxkwp4sxqskehsn",
+   "label": "Nova carteira - saque da #6 em out/2026",
+   "dog_base": 5839212
+  },
+  {
+   "address": "bc1pm5df6dehqjh8z8gap8vj8herg6ul3yg4u6df7n6ptxa5s40cxfaqk2nvjj",
+   "label": "Nova carteira - saque da #6 em out/2026",
+   "dog_base": 1048806
   }
  ],
  "dormentes": [
