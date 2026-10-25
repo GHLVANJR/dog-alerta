@@ -70,6 +70,38 @@ def notificar(texto):
 
 
 # ---------------- dados de mercado ----------------
+class Alertas(list):
+    """Lista de alertas que IMPRIME cada motivo no momento em que e registrado (nunca ha alerta silencioso)."""
+    def append(self, motivo):
+        print("  " + "!" * 3 + " DOG ALERTA: " + motivo)
+        super().append(motivo)
+
+
+def gh_escape(t):
+    return t.replace("%", "%25").replace("\r", "%0D").replace("\n", "%0A")
+
+
+def publicar_github(alertas, erros):
+    """Escreve motivos no resumo do job, anotacoes ::error e GITHUB_OUTPUT (so dentro do Actions)."""
+    resumo = os.environ.get("GITHUB_STEP_SUMMARY")
+    if resumo:
+        with open(resumo, "a", encoding="utf-8") as f:
+            if alertas:
+                f.write("## !!! DOG ALERTA\n\n" + "".join(f"- {a}\n" for a in alertas) + "\n")
+            else:
+                f.write("## DOG: nenhum alerta. Tudo calmo.\n\n")
+            if erros:
+                f.write("### Avisos (nao sao alertas)\n\n" + "".join(f"- {e}\n" for e in erros) + "\n")
+    for a in alertas:
+        print(f"::error title=DOG ALERTA::{gh_escape(a)}")
+    for e in erros:
+        print(f"::warning title=DOG erro de checagem::{gh_escape(e)}")
+    out = os.environ.get("GITHUB_OUTPUT")
+    if out:
+        with open(out, "a", encoding="utf-8") as f:
+            f.write(f"alertas={len(alertas)}\n")
+
+
 def kraken_ohlc(intervalo):
     d = get(KRAKEN_OHLC.format(intervalo))
     try:
@@ -456,39 +488,44 @@ def main():
     except Exception:
         state = {}
     antes = json.dumps(state, sort_keys=True)
-    alertas = []
+    alertas, erros = Alertas(), []
+    m = {"preco": None, "vol": None, "chg24": None, "btc24": None, "fonte": None}
+    cfg = {}
 
-    print("== (a) Volume 24h ==")
-    m = mercado()
-    checar_volume(m, state, alertas)
+    def etapa(titulo, fn):
+        print(titulo)
+        try:
+            fn()
+        except Exception as e:  # erro de checagem NAO e alerta: so aviso
+            msg = f"{titulo.strip('= ')}: {type(e).__name__}: {e}"
+            print(f"  ERRO (nao e alerta): {msg}")
+            erros.append(msg)
 
-    print("== (b) Transferencias entre carteiras grandes ==")
-    cfg = json.load(open(os.path.join(AQUI, "wallets.json")))
-    checar_wallets(cfg["wallets"], state, alertas)
-
-    print("== (c) Movimento de preco ==")
-    checar_preco(m, state, alertas)
-
-    print("== (d) Sinal de entrada / invalidacao ==")
-    checar_entrada(m, state, alertas)
-
-    print("== (e) On-chain leve (espo.sh, opcional) ==")
-    checar_onchain(state, alertas)
-
-    print("== (f) Carteiras convictas e dormentes ==")
-    checar_convictas(cfg, state, alertas)
+    etapa("== (a) Volume 24h ==", lambda: (m.update(mercado()), checar_volume(m, state, alertas)))
+    etapa("== (b) Transferencias entre carteiras grandes ==",
+          lambda: (cfg.update(json.load(open(os.path.join(AQUI, "wallets.json")))),
+                   checar_wallets(cfg["wallets"], state, alertas)))
+    etapa("== (c) Movimento de preco ==", lambda: checar_preco(m, state, alertas))
+    etapa("== (d) Sinal de entrada / invalidacao ==", lambda: checar_entrada(m, state, alertas))
+    etapa("== (e) On-chain leve (espo.sh, opcional) ==", lambda: checar_onchain(state, alertas))
+    etapa("== (f) Carteiras convictas e dormentes ==", lambda: checar_convictas(cfg, state, alertas))
 
     if json.dumps(state, sort_keys=True) != antes:
         with open(STATE, "w") as f:
             json.dump(state, f, indent=1, sort_keys=True)
 
+    publicar_github(alertas, erros)
     if alertas:
-        texto = "🐕 DOG ALERTA (rune 840000:3)\n" + "\n".join(alertas)
-        print("\n" + "!" * 60 + "\n" + texto + "\n" + "!" * 60)
-        notificar(texto)
-        sys.exit(1)  # falha de proposito -> GitHub manda e-mail
-    print("\nNenhum alerta. Tudo calmo.")
+        texto = "DOG ALERTA (rune 840000:3)\n" + "\n".join(f"- {a}" for a in alertas)
+        print("\n" + "!" * 60 + "\n!!! " + texto + "\n" + "!" * 60)
+        notificar("\U0001F415 " + texto)
+        sys.exit(1)  # 1 = houve alerta (motivos impressos acima)
+    print("\nNenhum alerta. Tudo calmo." + (f" ({len(erros)} erro(s) de checagem, ver avisos)" if erros else ""))
 
 
 if __name__ == "__main__":
+    try:
+        sys.stdout.reconfigure(encoding="utf-8", line_buffering=True)
+    except Exception:
+        pass
     main()
