@@ -1,97 +1,107 @@
 {
  "alerted": [],
  "convictas": {
+  "bc1p0jm3ucw8sh7edx37lw06ce9aaem09tcx2yr2zuenqr33hqce3lps67k0ns": {
+   "checado_em": 1792887860,
+   "ref": 0.0,
+   "ultimo": 0.0
+  },
   "bc1p4pkr90vrqspmfddplde05v55gelkvcjwhsu93c9m5zu9gwwvgz0qap0vkn": {
-   "checado_em": 1792881637,
+   "checado_em": 1792887860,
    "ntx": 103,
    "ref": 491438189.15,
    "ultimo": 491438189.15
   },
   "bc1p5qpcdw4xpql54f0hfuxukgqe9g0ln0mppxgw8tqh2jvd8rccs3ase2zdj8": {
-   "checado_em": 1792881637,
+   "checado_em": 1792887860,
    "ntx": 8,
    "ref": 310000000.0,
    "ultimo": 310000000.0
   },
   "bc1p5s304rghaw9uv66ewva26qvsw8gt4ydwl5yxa7knkkl5k4v492vs8yykdm": {
-   "checado_em": 1792881637,
+   "checado_em": 1792887860,
    "ref": 487039940,
    "ultimo": 487039939.5447
   },
   "bc1p6ag3mn7x38tgvefqxs89zwun4jccpdf7s690ly0ktn5nzhadggqqm5xva7": {
-   "checado_em": 1792881637,
+   "checado_em": 1792887860,
    "ntx": 41,
    "ref": 406049743.99396,
    "ultimo": 406049743.99396
   },
   "bc1p7e8tuawg9j0x7pz7zw77rrls5sulsnmctne5gurfzgv5fhzc48jqxfn232": {
-   "checado_em": 1792881637,
+   "checado_em": 1792887860,
    "ntx": 237,
    "ref": 159474671.25329,
    "ultimo": 159474671.25329
   },
   "bc1p9n0tusyf7892lfv68vcu8zhvjtcsd2r87w5my88qe5qyeetfcdlq2q65ng": {
-   "checado_em": 1792881637,
+   "checado_em": 1792887860,
    "ntx": 14,
    "ref": 154079884.89728,
    "ultimo": 154079884.89728
   },
   "bc1phd70g7qgfmsyv0dktq3hmh4nlcl99p25e5lquye7te7r7njuu6ps79zhqh": {
-   "checado_em": 1792881637,
+   "checado_em": 1792887860,
    "ref": 29997273.02372,
    "ultimo": 29997273.02372
   },
   "bc1pj7ku066jey0h6cca2tc3ft62y3k2kh8v4mqnel3hasyehe4jw23sm2h0xm": {
-   "checado_em": 1792881637,
+   "checado_em": 1792887860,
    "ref": 15897272.23131,
    "ultimo": 15897272.23131
   },
   "bc1pneum26aq4jjtw8p72gsf0k34qvjfmlucjpa2kx70s6ppuh0dpkgs78ndd5": {
-   "checado_em": 1792881637,
+   "checado_em": 1792887860,
    "ref": 4696823.81581,
    "ultimo": 4696823.81581
   },
   "bc1pqc2zn2nakq255dy6swjkts54ktfm35cjv2x7266n53tn8lvntfjsjpsuds": {
-   "checado_em": 1792881637,
+   "checado_em": 1792887860,
    "ntx": 34,
    "ref": 319952000.0,
    "ultimo": 319952000.0
   },
   "bc1ptfgl99df6xtkg6e407d4hylslt32hw0vgk3zwa7n9urlktdwaukqpndgwq": {
-   "checado_em": 1792881637,
+   "checado_em": 1792887860,
    "ntx": 26,
    "ref": 115040538.84109,
    "ultimo": 115040538.84109
   },
   "bc1ptuuga5dww30s5vw5sugx6x5y5svvsw2wghenw8hgn72tffxs3sqqwnt3zv": {
-   "checado_em": 1792881637,
+   "checado_em": 1792887860,
    "ntx": 17,
    "ref": 138371557.62,
    "ultimo": 138371557.62
   },
   "bc1pykww7r44ts0t4c5fwlngcdvf26cq36eg3t2h0yct3cpptmn7tuxqfraj2s": {
-   "checado_em": 1792881637,
+   "checado_em": 1792887860,
    "ntx": 2,
    "ref": 111032781.27567,
    "ultimo": 111032781.27567
   },
   "bc1pzfc47vp69p88wj7fx3a0n30hxhhvkfck3zz63eg53n8ur9wxrstssed4f0": {
-   "checado_em": 1792881637,
+   "checado_em": 1792887860,
    "ntx": 5,
    "ref": 200692046.89979,
    "ultimo": 200692046.89979
   },
   "bc1pzsygr05uzgtnyfg7a3j0ehjpuph5gaadvjx4gsry52knsvhhz7cqu4fal9": {
-   "checado_em": 1792881637,
+   "checado_em": 1792887860,
    "ntx": 104,
    "ref": 1135469082.3351,
    "ultimo": 1135469082.3351
   },
   "bc1q42dv46c779lz3m87hen7u3wtvfmquewgaeus30": {
-   "checado_em": 1792881637,
+   "checado_em": 1792887860,
    "ntx": 257,
    "ref": 116727511.14754,
    "ultimo": 116727511.14754
+  },
+  "bc1q6kxj39dwva5xfv5278vcp3uhmql567qlpldtcr": {
+   "checado_em": 1792887860,
+   "ref": 0.0,
+   "ultimo": 0.0
   }
  },
  "entrada": {
@@ -113,7 +123,7 @@
   }
  },
  "onchain": {
-  "holders": 86280,
+  "holders": 86282,
   "top10_pct": 29.3,
   "top10_ref": 29.48
  },
@@ -172,12 +182,11 @@
    "cf97e59f92bda4d4a58f9bdbb8bfb2dc0f66ec3c23355799c2dc754e935a9bd1",
    "d30cd57d907d348eab8fe612108fb43163a332fca860638c6928bc04c6649ccf",
    "512b998eba47377c2a062692a47657943ab51f031b9d83113b9cb672c004949a",
-   "5c8cdff48408bfca031445203bda1aaa0223254261d481c67cc98553f8c7ca80"
+   "5c8cdff48408bfca031445203bda1aaa0223254261d481c67cc98553f8c7ca80",
+   "d9c6846868c8b6afd5c82ea68e6b55c60c809f9767530b2923bdaaa4e4f4b4d0"
   ],
   "bc1p4pkr90vrqspmfddplde05v55gelkvcjwhsu93c9m5zu9gwwvgz0qap0vkn": [],
   "bc1p50n9sksy5gwe6fgrxxsqfcp6ndsfjhykjqef64m8067hfadd9efqrhpp9k": [
-   "ffb25ed4ab9211b82110094d749501359bbd7ac76a7af2a65e8cf0f36409af6f",
-   "d2a38bacdd55e17f15385d02e8a0b547bfe5020243397a5a611a9c8d31a244e5",
    "067155957c3d6d4e5706a88df15f595e67e1a00508620a99620d312c9ce166a0",
    "c9eec39286df3e94afb78e6a91960758ab717911fa093e799411da7cd85043b0",
    "b334ea440d223ae5657012e745fbfded8c01b543c9d10b0ecb0617c0ebe3dff2",
@@ -275,7 +284,9 @@
    "9548112e79853a3c4f13e060c5c01102ec6e0e66f41d3193e0056bdbbf7e419f",
    "038eb4a3db3b4e4992b6a76555760e8603aff8b077a4ee8bbd089f1bf297e953",
    "a02ce945604ad142e70cf7b939629c846002b3a4ac3e1de0f1d970c465859614",
-   "aa06cfba39c6f149b7b287fe36f2f894bb6d1b1471caf645a3a90ae7d165059f"
+   "aa06cfba39c6f149b7b287fe36f2f894bb6d1b1471caf645a3a90ae7d165059f",
+   "f57b600a6134dd7c7442fffc73d03261b07d03cbe0efc8d07f40ec1ca5e47f6a",
+   "7fb178d3486224b3e75f46dd432866fe9f967fdb1e6937ef83dc017e3acbe518"
   ],
   "bc1pczdzvvuulwyna9e6dsl8w0r35prvnmpawcwlrv4y42u5npysrdzqhwa7wl": [
    "8397d9b0d7547c83a3d92eb53dcb83b7f65ef4b19f2d8a94e84d8b23b7a36add",
@@ -353,8 +364,6 @@
    "68c0d824464fba7e1412b9b76c06db6f5f13bfe112c058b540d1ec041b00d92d"
   ],
   "bc1plzs2lltvv29k603w5m0aqma5e8w0n3pc77dt89l5w9hurmdfgd0swdhspn": [
-   "a4c23f1bd65909fe268edf29f7b8c42b4909093f2932ca6ca493231f24f9bf95",
-   "d6673ba2eaaabc9f14e9b00ee42922828374389210fec40c4812a40123d5611d",
    "1d7cc4a84167fe2da037d77993fe4b9f7b434d0ff94b6b6f258e17be6cc47540",
    "5a08b2b9feb2b27fcae1ab6085d9608f348b903c727a566973be6d60f7a0da2e",
    "28e8574bdb2cedbb00895e8b6444efdcb85fc3cb18ae50cdee874b39f8ad64e2",
@@ -452,7 +461,9 @@
    "3e55c732e94e4ac9e851743add75f4067468cef7d317e9b24bb2609f33f6204a",
    "dbdcae0353ad8d6b2ab3555227cd58e540a09cd11560965fadf54f84f5c4866c",
    "55d62b9f96c05dd565d67d4378b1fa9e6bbbfe07b8ac7f311f7eea6f8ed1dc7b",
-   "43c0500fb86d56f3855119bac8922fcd482cdc853f0b122db9a22c8c1f53cb13"
+   "43c0500fb86d56f3855119bac8922fcd482cdc853f0b122db9a22c8c1f53cb13",
+   "eaaec9d02363a130a723b2b04dc5f51c62c4846e4f191a204c11ba73ee15d577",
+   "c20075403f2b259d2173f35b87a75f7b8da2f67c884efd0ce71f3bf9eae9a4f5"
   ],
   "bc1pzg6aed026czampasr6lp7q0eugeptmw789z4d0xm605sc0qm2cmqxf5vtk": [
    "8881915853ffa244a2a2897647330297cae38598940232532026b7bdf49c7faf",
