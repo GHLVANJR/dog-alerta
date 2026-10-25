@@ -27,10 +27,16 @@ jobs:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
           DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+          PYTHONIOENCODING: utf-8
         run: |
           set +e
-          python3 dog_alerta.py
-          echo "code=$?" >> "$GITHUB_OUTPUT"
+          python3 -u dog_alerta.py
+          code=$?
+          echo "code=$code" >> "$GITHUB_OUTPUT"
+          # codigo != 0 e != 1 (ex.: crash) nao e alerta; vira so aviso
+          if [ "$code" != "0" ] && [ "$code" != "1" ]; then
+            echo "::warning title=DOG script falhou::dog_alerta.py saiu com codigo $code (nao e alerta)"
+          fi
 
       - name: Salvar state.json (evita alertas repetidos)
         if: always()
@@ -44,5 +50,8 @@ jobs:
           git push
 
       - name: Falhar o job se houve alerta (e-mail do GitHub)
-        if: steps.run.outputs.code == '1'
-        run: exit 1
+        # falha SO se o script registrou (e imprimiu) >= 1 motivo de alerta
+        if: steps.run.outputs.alertas != '' && steps.run.outputs.alertas != '0'
+        run: |
+          echo "::error title=DOG ALERTA::${{ steps.run.outputs.alertas }} alerta(s) - motivos no resumo do job e no passo Monitor"
+          exit 1
