@@ -93,6 +93,21 @@
    "address": "bc1pm5df6dehqjh8z8gap8vj8herg6ul3yg4u6df7n6ptxa5s40cxfaqk2nvjj",
    "label": "Nova carteira - saque da #6 em out/2026",
    "dog_base": 1048806
+  },
+  {
+   "address": "bc1ps23x8v4surl8e3rp9hhl6zdtf7823t8a27gs8kkxw8dzdte5pjrqy7dhps",
+   "label": "Varejo novo (saque #6/#5) 26/10",
+   "dog_base": 1042747.61948
+  },
+  {
+   "address": "bc1p860arhrgd9095yr6zdfsd5clm73gcl3t88mswusew4jvat7exqmshf0nd7",
+   "label": "Varejo novo (saque #6/#5) 26/10",
+   "dog_base": 4249333.31391
+  },
+  {
+   "address": "bc1ps8qkmxtjj44fu83cval8qp8kdur2yvddpdvec4rjfczvaca09wksq872q6",
+   "label": "Varejo novo (saque #6/#5) 26/10",
+   "dog_base": 4083851.26161
   }
  ],
  "dormentes": [
