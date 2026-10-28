@@ -108,6 +108,11 @@
    "address": "bc1ps8qkmxtjj44fu83cval8qp8kdur2yvddpdvec4rjfczvaca09wksq872q6",
    "label": "Varejo novo (saque #6/#5) 26/10",
    "dog_base": 4083851.26161
+  },
+  {
+   "address": "bc1p07jk6qndmt84cqkdqjmtmttnveds0rdhquy2dq6vz087pvl7vzwqul48zv",
+   "label": "Nova carteira da dormente #10 (28/10)",
+   "dog_base": 59928290.17836
   }
  ],
  "dormentes": [
