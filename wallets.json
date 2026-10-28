@@ -60,29 +60,9 @@
    "dog_base": 487039940
   },
   {
-   "address": "bc1phd70g7qgfmsyv0dktq3hmh4nlcl99p25e5lquye7te7r7njuu6ps79zhqh",
-   "label": "convicta B (so DOG desde 05/2024)",
-   "dog_base": 29997273.02372
-  },
-  {
    "address": "bc1pneum26aq4jjtw8p72gsf0k34qvjfmlucjpa2kx70s6ppuh0dpkgs78ndd5",
    "label": "convicta C (so DOG, nova 27/09/2026)",
    "dog_base": 4696823.81581
-  },
-  {
-   "address": "bc1pj7ku066jey0h6cca2tc3ft62y3k2kh8v4mqnel3hasyehe4jw23sm2h0xm",
-   "label": "convicta D (colecionador de runes desde 04/2024)",
-   "dog_base": 15897272.23131
-  },
-  {
-   "address": "bc1q6kxj39dwva5xfv5278vcp3uhmql567qlpldtcr",
-   "label": "Parceira da baleia #5 (co-sender com #5 para #16/#36)",
-   "dog_base": null
-  },
-  {
-   "address": "bc1p0jm3ucw8sh7edx37lw06ce9aaem09tcx2yr2zuenqr33hqce3lps67k0ns",
-   "label": "Parceira da #6 (co-sender com custodial #6)",
-   "dog_base": null
   },
   {
    "address": "bc1p92r0n775g4vw55e6uynqc2mljy7awrvgnpus7y0us48fxkwp4sxqskehsn",
