@@ -22,6 +22,7 @@ RESISTENCIAS = [0.00101, 0.00106, 0.00110, 0.00120]
 ROMPIMENTO = 0.00101            # fechamento diario Kraken acima disto + volume > VOL_LIMITE_USD
 INVALIDACAO = 0.00088           # fechamento diario Kraken abaixo disto
 BTC_MIN_24H = -2.0              # entrada em suporte so se BTC 24h >= -2%
+STOP_ZONA = 0.03               # stop de cada entrada: fechamento diario 3% abaixo do fundo da zona
 REARMA_MARGEM = 0.01            # zona so rearma depois que o preco sai 1% para fora dela
 REALERTA_ZONA_HORAS = 24
 # (e) on-chain leve (opcional; desligue com ONCHAIN=0)
@@ -206,7 +207,7 @@ def checar_entrada(m, state, alertas):
                 print(f"  dentro da zona {faixa}, mas BTC 24h {btc:.2f}% < {BTC_MIN_24H}% -> sem sinal")
             else:
                 alertas.append(f"ENTRADA DOG: preco US$ {p:.8f} na zona de suporte {faixa} e BTC 24h "
-                               f"{btc:+.2f}%. Alvos: {alvos(p)}. Invalida com fechamento diario < {INVALIDACAO:.5f}")
+                               f"{btc:+.2f}%. Alvos: {alvos(p)}. Stop: fechamento diario < {lo * (1 - STOP_ZONA):.6f}")
                 z.update(armada=False, ultimo_alerta=agora)
     else:
         print("  sem preco atual, so checando fechamento diario")
