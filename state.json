@@ -2,7 +2,7 @@
  "alerted": [],
  "convictas": {
   "bc1p07jk6qndmt84cqkdqjmtmttnveds0rdhquy2dq6vz087pvl7vzwqul48zv": {
-   "checado_em": 1794708888,
+   "checado_em": 1794735566,
    "ref": 59928290.17836,
    "ultimo": 59928290.17836
   },
@@ -12,47 +12,47 @@
    "ultimo": 0.0
   },
   "bc1p4pkr90vrqspmfddplde05v55gelkvcjwhsu93c9m5zu9gwwvgz0qap0vkn": {
-   "checado_em": 1794708888,
-   "ntx": 106,
-   "ref": 431341456.24,
-   "ultimo": 431341456.24
+   "checado_em": 1794735566,
+   "ntx": 107,
+   "ref": 421228723.24,
+   "ultimo": 421228723.24
   },
   "bc1p5qpcdw4xpql54f0hfuxukgqe9g0ln0mppxgw8tqh2jvd8rccs3ase2zdj8": {
-   "checado_em": 1794708888,
+   "checado_em": 1794735566,
    "ntx": 8,
    "ref": 310000000.0,
    "ultimo": 310000000.0
   },
   "bc1p5s304rghaw9uv66ewva26qvsw8gt4ydwl5yxa7knkkl5k4v492vs8yykdm": {
-   "checado_em": 1794708888,
+   "checado_em": 1794735566,
    "ref": 487039940,
    "ultimo": 487039939.5447
   },
   "bc1p6ag3mn7x38tgvefqxs89zwun4jccpdf7s690ly0ktn5nzhadggqqm5xva7": {
-   "checado_em": 1794708888,
+   "checado_em": 1794735566,
    "ntx": 41,
    "ref": 406049743.99396,
    "ultimo": 406049743.99396
   },
   "bc1p7e8tuawg9j0x7pz7zw77rrls5sulsnmctne5gurfzgv5fhzc48jqxfn232": {
    "aumento_em": 1794638928,
-   "checado_em": 1794708888,
+   "checado_em": 1794735566,
    "ntx": 238,
    "ref": 164559882.83174,
    "ultimo": 164559882.83174
   },
   "bc1p860arhrgd9095yr6zdfsd5clm73gcl3t88mswusew4jvat7exqmshf0nd7": {
-   "checado_em": 1794708888,
+   "checado_em": 1794735566,
    "ref": 4249333.31391,
    "ultimo": 4249333.31391
   },
   "bc1p92r0n775g4vw55e6uynqc2mljy7awrvgnpus7y0us48fxkwp4sxqskehsn": {
-   "checado_em": 1794708888,
+   "checado_em": 1794735566,
    "ref": 5839212,
    "ultimo": 5839212.18352
   },
   "bc1p9n0tusyf7892lfv68vcu8zhvjtcsd2r87w5my88qe5qyeetfcdlq2q65ng": {
-   "checado_em": 1794708888,
+   "checado_em": 1794735566,
    "ntx": 14,
    "ref": 154079884.89728,
    "ultimo": 154079884.89728
@@ -68,63 +68,63 @@
    "ultimo": 15897272.23131
   },
   "bc1pm5df6dehqjh8z8gap8vj8herg6ul3yg4u6df7n6ptxa5s40cxfaqk2nvjj": {
-   "checado_em": 1794708888,
+   "checado_em": 1794735566,
    "ref": 1048806,
    "ultimo": 1048805.80481
   },
   "bc1pneum26aq4jjtw8p72gsf0k34qvjfmlucjpa2kx70s6ppuh0dpkgs78ndd5": {
-   "checado_em": 1794708888,
+   "checado_em": 1794735566,
    "ref": 4696823.81581,
    "ultimo": 4696823.81581
   },
   "bc1pqc2zn2nakq255dy6swjkts54ktfm35cjv2x7266n53tn8lvntfjsjpsuds": {
-   "checado_em": 1794708888,
+   "checado_em": 1794735566,
    "ntx": 34,
    "ref": 319952000.0,
    "ultimo": 319952000.0
   },
   "bc1ps23x8v4surl8e3rp9hhl6zdtf7823t8a27gs8kkxw8dzdte5pjrqy7dhps": {
-   "checado_em": 1794708888,
+   "checado_em": 1794735566,
    "ref": 1042747.61948,
    "ultimo": 1042747.61948
   },
   "bc1ps8qkmxtjj44fu83cval8qp8kdur2yvddpdvec4rjfczvaca09wksq872q6": {
-   "checado_em": 1794708888,
+   "checado_em": 1794735566,
    "ref": 4083851.26161,
    "ultimo": 4083851.26161
   },
   "bc1ptfgl99df6xtkg6e407d4hylslt32hw0vgk3zwa7n9urlktdwaukqpndgwq": {
-   "checado_em": 1794708888,
+   "checado_em": 1794735566,
    "ntx": 26,
    "ref": 115040538.84109,
    "ultimo": 115040538.84109
   },
   "bc1ptuuga5dww30s5vw5sugx6x5y5svvsw2wghenw8hgn72tffxs3sqqwnt3zv": {
-   "checado_em": 1794708888,
+   "checado_em": 1794735566,
    "ntx": 17,
    "ref": 138371557.62,
    "ultimo": 138371557.62
   },
   "bc1pykww7r44ts0t4c5fwlngcdvf26cq36eg3t2h0yct3cpptmn7tuxqfraj2s": {
-   "checado_em": 1794708888,
+   "checado_em": 1794735566,
    "ntx": 2,
    "ref": 111032781.27567,
    "ultimo": 111032781.27567
   },
   "bc1pzfc47vp69p88wj7fx3a0n30hxhhvkfck3zz63eg53n8ur9wxrstssed4f0": {
-   "checado_em": 1794708888,
+   "checado_em": 1794735566,
    "ntx": 5,
    "ref": 200692046.89979,
    "ultimo": 200692046.89979
   },
   "bc1pzsygr05uzgtnyfg7a3j0ehjpuph5gaadvjx4gsry52knsvhhz7cqu4fal9": {
-   "checado_em": 1794708888,
+   "checado_em": 1794735566,
    "ntx": 104,
    "ref": 1135469082.3351,
    "ultimo": 1135469082.3351
   },
   "bc1q42dv46c779lz3m87hen7u3wtvfmquewgaeus30": {
-   "checado_em": 1794708888,
+   "checado_em": 1794735566,
    "ntx": 257,
    "ref": 116727511.14754,
    "ultimo": 116727511.14754
@@ -155,7 +155,7 @@
   }
  },
  "onchain": {
-  "holders": 86239,
+  "holders": 86236,
   "top10_pct": 28.52,
   "top10_ref": 28.48
  },
@@ -271,10 +271,10 @@
   "bc1p4pkr90vrqspmfddplde05v55gelkvcjwhsu93c9m5zu9gwwvgz0qap0vkn": [
    "b0752eed78df817012cdaaec43f9a47f4981ce595747084968b09167d86b9dc1",
    "83c3b4bc15dc8d26d118eae6d4ea59143624ef5fd334a53ce1a52ff19b3c228d",
-   "5008f02ac37ffb08d5f8993dab0950b4781ca418136719cf5144be6ed3c7e9d1"
+   "5008f02ac37ffb08d5f8993dab0950b4781ca418136719cf5144be6ed3c7e9d1",
+   "cf9c17cf274259961d53158029435d56d3c56b25c7a0f9e0b8affb1ed44d8b41"
   ],
   "bc1p50n9sksy5gwe6fgrxxsqfcp6ndsfjhykjqef64m8067hfadd9efqrhpp9k": [
-   "643c1dac5408953497e6fdf97459b87829b118e55a8fe79c77ba2abceca9efaf",
    "ee6cd78f3125e8b076be4872e20c9d6d0363a7ac41ed9ce577f34aff86f6e176",
    "c3f21d000ba02d75406c15224952119bb5ed0b9761fc61c730ad4f4f32778b9b",
    "4bb2d1cd150a5f0345b3324e69164c430198bc725ac25fd4eedee4bdee063cc7",
@@ -373,7 +373,8 @@
    "d7c4633002de865762315ab5865b6e2ffb0116d8d7f74b26dc8427284eb0343f",
    "959f8cccdcaf6593bba415eff59e23fe5b1ac67a9e77578bdf00188090a11711",
    "95c3be4edba36bf377206c3840e8cad9d7fe65e0ab9105ea993a233f367f6d3a",
-   "b637420c33a9bd18a8c0c45725cf01c67b3714f8540834932542cfd396ea248c"
+   "b637420c33a9bd18a8c0c45725cf01c67b3714f8540834932542cfd396ea248c",
+   "5eccd53e7a7051578a2547f2a65ad62f2ad325bce1a7a8b0a7529ab45d30bffc"
   ],
   "bc1pczdzvvuulwyna9e6dsl8w0r35prvnmpawcwlrv4y42u5npysrdzqhwa7wl": [
    "8397d9b0d7547c83a3d92eb53dcb83b7f65ef4b19f2d8a94e84d8b23b7a36add",
@@ -440,7 +441,6 @@
    "78860fb1518729b77a467058e60a1a2b266e57dec167d59d3b54bbcc9cf1e208"
   ],
   "bc1pk8g4rztfkxs2q9c40g6keeknjw6aadx3kzu4suzlll0remfw7xxs5x9ctv": [
-   "e8dd862f4a81cd29ac33e3f8f970ef643478ce51aefe351dbb2c7f768dfa81ec",
    "d88e64b2dba9ff78588c840881554719d057149a56b002e797a79966626b8a69",
    "2fdd37d5544792c1ea61c5a80c3adb32a3115de8e8e8961a793d592abc1e8064",
    "643f76bebb900491b7440682e5f0c55629534b7043de27fc1e78c33b1b50c519",
@@ -539,19 +539,10 @@
    "fde77949e942010f1f90b8ba78d4684f59ad646e5034ec00670fa4e7a76d5e14",
    "dc61a2ed0717a49dd35c0e5578f7bc2cb38b638f9e80fb80efbbace28992e3f4",
    "9733cd651b22d4a0ce0d8caba087be1731277b4c26f42347050be4231db001ca",
-   "cdd2646bdbb2d8d6b0b7531b75a71e2e07edb32949b283b13555dd67ddd5e868"
+   "cdd2646bdbb2d8d6b0b7531b75a71e2e07edb32949b283b13555dd67ddd5e868",
+   "dc1542cfe74dfa8800d7f8e8b220cba1408fa0413088193fb24ba5ca199be9d6"
   ],
   "bc1plzs2lltvv29k603w5m0aqma5e8w0n3pc77dt89l5w9hurmdfgd0swdhspn": [
-   "302aecb6da552fa741d5e06a249a837a18aad782fc15685c9b0409895a1e08ef",
-   "05a533b0642dbf44aee4e1b1e8dce987204330acee07b7ea1160b633291365bd",
-   "536edf3434cc5d352eda77f27584fea75829efa780ea6b1548588f7d5ba2dd54",
-   "6fcf90e13f2885c451923f50712a5acda304f402c371a273189edb2e4e59600c",
-   "926ea837753ef6acbec8f079a77cad90e1bc4e9200beebf0f673c082a64c7b87",
-   "d0f41de37c2eaad2770bb38d8b19de029b382d1dbff47d1b307328e5e8a6c43c",
-   "7f51c16491fd0586bd32d244ffdf163fbcde5f16b1c0c5baaec7591e58988bc5",
-   "342f6259bbbaf615f4971315b3fb5033425ec1a3afe8f1b28a2525442cc770ef",
-   "dfbcd2e08696f3bdaa804bb569b7206024704fe567f6c064e0ff7cafa66579ce",
-   "89fdeba838e4745528b98c6cd959d693bdc599b0a2d64363a8e8a0230fe3de31",
    "8cd0513568338556d117fd6647b430bcfc77a6ac71e2b991c37cca401dd5dd9c",
    "60bf42841a0d593d33ef40348527311f1fd8eae316c17b23e23eb022ce095f6a",
    "85ab26402a6cb6263f82d98b85f683f4c4a21215aed19e6d2971937cc67d8074",
@@ -641,7 +632,17 @@
    "da64478285c991c1788f6e6b0762537de7039dda0a5b1d73cd752afdf1ecbf83",
    "5a2fc48a3cf7644df35a90c32c0f6bee68b37c1455a311997aa1e629882c204c",
    "2813c9fe5a9b3af361ccaca5d9d8ba397147c9600ea6af473c01d09d064afba1",
-   "4e2263daf109ef50b500dc2f503670b04b4613bc07cfb30af8e45900f77c4e95"
+   "4e2263daf109ef50b500dc2f503670b04b4613bc07cfb30af8e45900f77c4e95",
+   "571763d34d96035408dfeafdf31d4649d75bb2efac9af0d8f738aa42fc6bb3f0",
+   "5500068a64a3c6ed72b383807a17543752752a66637cf5a418170d50462d371d",
+   "92100799f97e21de4826799e5b71b48f971cbb2f7063070624adcf23f029ac1b",
+   "5e92b1b1e1911116fafe3b22ae95b908037e8a5abc2e9bc23e6c17a272fa8f8e",
+   "6740f755aa7b72035eddec541bf76b8ca457245f6965d2eeba56b9bae15daed8",
+   "200b96d80ad0b86ee5611beb4571ae12efe44867a9bd4720cb8772bea661177c",
+   "45e16edf7b9eb8a30d87f649d8797a7413f4ec51daf870fd56f6664df509edfe",
+   "988f7a88deffb95f22d7e35d4da68794a5381128af8d3dd442ad17708906e7fb",
+   "47d994343de2c834588cc519a83a36c945f428bc1c5ed1404f2f82daf3e9b828",
+   "5b6d268aac15acf19abf83e98da396c029febfc717ddd982277f2414f4417a25"
   ],
   "bc1pzg6aed026czampasr6lp7q0eugeptmw789z4d0xm605sc0qm2cmqxf5vtk": [
    "8881915853ffa244a2a2897647330297cae38598940232532026b7bdf49c7faf",
@@ -685,9 +686,6 @@
    "fb1f6b4e3a7e335ce892bba95d4d9e1f4683cfdb36b6a26bc240750b4755d556"
   ],
   "bc1qj7dam98j6ktjcp320qu77y2vrylv49c2k2hkmu": [
-   "dfae8a55e6f4d8b0bef5e9c39de5c99a55a3bf1270dda1d450f50b65d9e32535",
-   "be18510e80407898ac75caaa74d894338697a6a4ab347a121e6c3d474e2b3621",
-   "ddacd77d0777eb0f08fa2e8359e3b984a00141ac0c43ed05d90e39d7ea22004d",
    "db469c4c84a774eec66d7beaeb0fc4c15c8ec185aaf17ffba985807e5c8f657f",
    "c93d42578768125d97e0bb0d94b0fc90261136d6f5662c8394af7813066791ef",
    "8cc3a9a0a8ca93f1183a6e1883028a7fd13ce59b43ad7d6dcbd253f380521f01",
@@ -784,7 +782,10 @@
    "64366f71229cc7ee300ed63385dec36a7e200d056fd445a3891c83bd7877870c",
    "554c1419f7dd1808115a010244c8e7c832b67ce69fb710345ce704f6eca8b99b",
    "c74572b0f9aba5515992513be218ae4b68ae56200775871b5d6c7ce1f67ad05f",
-   "78532448de9b3113c937cc4a25d9bba05dbc24745149ea3782d9149e24c73eec"
+   "78532448de9b3113c937cc4a25d9bba05dbc24745149ea3782d9149e24c73eec",
+   "24ca04b0195be0b9c22158eee03803cbf87ece0a0c86e92215acbe7c20105420",
+   "12ace2ac6529690cc2a07c7a1d489dfa91e1e1854bc10d468e2b5e08c3527391",
+   "257030c52eded1e97d00ab517f42c0741e13755fa92f29e101df200e87ceb510"
   ]
  },
  "vol": {
